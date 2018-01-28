@@ -17,7 +17,7 @@ void TestRemoveDuplicateSpaces()
 	//if we dont allocate memory in heap the string manipulation will give Access violation errors.
 	char *newInput = new char[len+1];
 	strcpy_s(newInput, len + 1, str);
-	//RemoveDupicateSpaceC(newInput);
 	cout << newInput;
+	//clean up the allocated memory
 	delete[]newInput;
 }
