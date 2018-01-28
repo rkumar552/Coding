@@ -192,60 +192,7 @@ void Subset(int *data, int n)
 }
 
 
-char* RemoveDuplicateSpaces(char *inputstr)
-{
-	if (inputstr == nullptr) {
-		return inputstr;
-	}
-	int len = strlen(inputstr);
-	char *str = new char[len];
 
-	int start = 0;
-	int end = len - 1;
-
-	//skip leading spaces
-	while (start < end && str[start] == ' ') start++;
-
-	//skip spaces at end
-	while (end >= 0 && str[end] == ' ') end--;
-
-
-	int iEndofWord = start; //track space after word boundary
-	int iStartofWordToCopy = start; // track the starting of the word to copy
-
-	while (iEndofWord < end && iStartofWordToCopy < end) {
-
-		//skip the word
-		while (iEndofWord < end && str[iEndofWord] != ' ') iEndofWord++;
-
-		// we hit a space; check if we have duplicate spaces
-
-		if (iEndofWord + 1 < end && str[iEndofWord] != ' ')
-		{
-			iEndofWord++;
-			continue;
-		}
-
-		//we have duplicate spaces so move this pointer to start of next word
-		iStartofWordToCopy = iEndofWord + 1;
-		while (iStartofWordToCopy < end && str[iStartofWordToCopy] == ' ') iStartofWordToCopy++;
-
-		//now we need to shift chars/copy chars
-		while (iEndofWord < end && iStartofWordToCopy < end) {
-			unsigned char ch = str[iStartofWordToCopy];
-			str[iEndofWord] = ch;
-			iEndofWord++;
-			iStartofWordToCopy++;
-			end--; //shift the end pointer with every copy to discard trailing spaces
-		}
-		// move to new word
-		iEndofWord++;
-		iStartofWordToCopy++;
-	}
-	// set last char to null
-	str[end] = '\0';
-	return str;
-}
 
 void   RemoveDupicateSpaceC(char *str)
 {
