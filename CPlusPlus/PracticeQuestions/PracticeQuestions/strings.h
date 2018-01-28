@@ -18,7 +18,13 @@ void printRecursiveCore(vector<int> arr, vector<int> sub, int curr);
 //find first non-recurring char in a given string
 int firstNonRecurringChar(char *str);
 
+//remove all dupicate spaces from the string
+// for ex. input is "   Hello   world   " O/p: should be "Hello world" i.e with one space b/w words and no leading or lagging spaces
+
+string RemoveDuplicateSpacesStr(string str);
+void   RemoveDupicateSpaceC(char *str);
 
 //Testing
 
 void TestPalindromicStrings();
+void TestRemoveDuplicateSpaces();

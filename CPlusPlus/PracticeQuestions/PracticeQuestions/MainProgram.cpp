@@ -8,7 +8,8 @@ int main()
 {
 	char *str1 = "ABACBDAE";
 	char *str2 = "ABABA";
-	TestPalindromicStrings();
+	TestRemoveDuplicateSpaces();
+	//TestPalindromicStrings();
 	////int index1 = firstNonRecurringChar(str1);
 	//int index2 = firstNonRecurringChar(str2);
 	//int arr[] = { 1,2,3 };

@@ -67,7 +67,8 @@ string expandAtCenter(string str, int start, int end)
 	// we need to start at center and expand outwards and compare the chars
 	//
 
-	while (start >= 0 && end <= str.length()-1 && str[start] == str[end])
+	int len = str.length();
+	while (start >= 0 && end <= len-1 && str[start] == str[end])
 	{
 		start--;
 		end++;
@@ -190,3 +191,81 @@ void Subset(int *data, int n)
 	}
 }
 
+
+char* RemoveDuplicateSpaces(char *inputstr)
+{
+	if (inputstr == nullptr) {
+		return inputstr;
+	}
+	int len = strlen(inputstr);
+	char *str = new char[len];
+
+	int start = 0;
+	int end = len - 1;
+
+	//skip leading spaces
+	while (start < end && str[start] == ' ') start++;
+
+	//skip spaces at end
+	while (end >= 0 && str[end] == ' ') end--;
+
+
+	int iEndofWord = start; //track space after word boundary
+	int iStartofWordToCopy = start; // track the starting of the word to copy
+
+	while (iEndofWord < end && iStartofWordToCopy < end) {
+
+		//skip the word
+		while (iEndofWord < end && str[iEndofWord] != ' ') iEndofWord++;
+
+		// we hit a space; check if we have duplicate spaces
+
+		if (iEndofWord + 1 < end && str[iEndofWord] != ' ')
+		{
+			iEndofWord++;
+			continue;
+		}
+
+		//we have duplicate spaces so move this pointer to start of next word
+		iStartofWordToCopy = iEndofWord + 1;
+		while (iStartofWordToCopy < end && str[iStartofWordToCopy] == ' ') iStartofWordToCopy++;
+
+		//now we need to shift chars/copy chars
+		while (iEndofWord < end && iStartofWordToCopy < end) {
+			unsigned char ch = str[iStartofWordToCopy];
+			str[iEndofWord] = ch;
+			iEndofWord++;
+			iStartofWordToCopy++;
+			end--; //shift the end pointer with every copy to discard trailing spaces
+		}
+		// move to new word
+		iEndofWord++;
+		iStartofWordToCopy++;
+	}
+	// set last char to null
+	str[end] = '\0';
+	return str;
+}
+
+void   RemoveDupicateSpaceC(char *str)
+{
+	char *start = str;
+	char *end = str;
+
+	while (*end != '\0') {
+
+		while ( *end != '\0' && *end != ' ') {
+			*start++ = *end++;
+		}
+
+		//skip white spaces
+		while ( *end != '\0' && *end == ' ')
+			   end++;
+
+		if (start != str && *end != '\0') {
+			// if this is not start or end,  add extra space b/w word
+			*start++ = ' ';
+		}
+	}
+	*start = '\0';
+}
